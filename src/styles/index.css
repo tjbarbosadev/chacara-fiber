@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+@config '../../tailwind.config.ts';
+
+@layer base {
+  :root {
+    --color-bg: #f8fafc;
+    --color-bg-secondary: #f1f5f9;
+    --color-text: #050a1a;
+    --color-text-muted: #0f1f3d;
+    --color-border: #e2e8f0;
+  }
+
+  .dark {
+    --color-bg: #050a1a;
+    --color-bg-secondary: #0a1628;
+    --color-text: #ffffff;
+    --color-text-muted: #cbd5e1;
+    --color-border: rgba(212, 175, 55, 0.6);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    transition:
+      color 0.3s,
+      background-color 0.3s;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: Montserrat, system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    @apply from-gold-400 to-gold-500 bg-gradient-to-r bg-clip-text text-transparent;
+  }
+
+  .border-gold-glow {
+    @apply border-gold-500/60 border shadow-[0_0_15px_rgba(212,175,55,0.15)];
+  }
+
+  .bg-fiber {
+    background-image:
+      radial-gradient(
+        circle at 20% 80%,
+        rgba(59, 130, 246, 0.1) 0%,
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(59, 130, 246, 0.08) 0%,
+        transparent 40%
+      );
+  }
+
+  .bg-fiber-light {
+    background-image:
+      radial-gradient(
+        circle at 20% 80%,
+        rgba(59, 130, 246, 0.06) 0%,
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(59, 130, 246, 0.04) 0%,
+        transparent 40%
+      );
+  }
+
+  .bg-hero-glow {
+    background-image: radial-gradient(
+      ellipse at 70% 50%,
+      rgba(212, 175, 55, 0.12) 0%,
+      transparent 60%
+    );
+  }
+}
