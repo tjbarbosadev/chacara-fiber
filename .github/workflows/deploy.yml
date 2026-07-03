@@ -22,9 +22,7 @@ jobs:
 
       - uses: tailscale/github-action@v4
         with:
-          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-          tags: tag:github-actions
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
       - name: Deploy to homelab
         env:
@@ -34,10 +32,6 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H homelab >> ~/.ssh/known_hosts 2>/dev/null || true
-
-          rsync -avz --delete \
-            -e "ssh -i ~/.ssh/deploy_key" \
-            dist/ osadmin@homelab:/var/www/chacaranetfiber/
 
           ssh -i ~/.ssh/deploy_key osadmin@homelab \
             'sudo nginx -t && sudo systemctl reload nginx'
